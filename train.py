@@ -4,7 +4,7 @@ import argparse
 import os
 import numpy as np
 import json
-from voc import parse_voc_annotation
+from guntxt import parse_txt_annotation
 from yolo import create_yolov3_model, dummy_loss
 from generator import BatchGenerator
 from utils.utils import normalize, evaluate, makedirs
@@ -26,11 +26,11 @@ def create_training_instances(
     labels,
 ):
     # parse annotations of the training set
-    train_ints, train_labels = parse_voc_annotation(train_annot_folder, train_image_folder, train_cache, labels)
+    train_ints, train_labels = parse_txt_annotation(train_annot_folder, train_image_folder)
 
     # parse annotations of the validation set, if any, otherwise split the training set
     if os.path.exists(valid_annot_folder):
-        valid_ints, valid_labels = parse_voc_annotation(valid_annot_folder, valid_image_folder, valid_cache, labels)
+        valid_ints, valid_labels = parse_txt_annotation(valid_annot_folder, valid_image_folder)
     else:
         print("valid_annot_folder not exists. Spliting the trainining set.")
 
