@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-
+import os
 def parse_txt_annotation(ann_dir, img_dir):
     all_insts = []
     labels = {'gun': 0}
