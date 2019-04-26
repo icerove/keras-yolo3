@@ -1,0 +1,40 @@
+{
+    "model" : {
+        "min_input_size":       235,
+        "max_input_size":       1880,
+        "anchors":              [55,69, 75,234, 133,240, 136,129, 142,363, 203,290, 228,184, 285,359, 341,260],
+        "labels":               ["gun"]
+    },
+
+    "train": {
+        "train_image_folder":   "/content/gun_data_cross_validation/xxxxx/train_img/",
+        "train_annot_folder":   "/content/gun_data_cross_validation/xxxxx/train_annot/",
+        "cache_name":           "",
+
+        "train_times":          8,
+        "batch_size":           16,
+        "learning_rate":        1e-4,
+        "nb_epochs":            100,
+        "warmup_epochs":        3,
+        "ignore_thresh":        0.5,
+        "gpus":                 "0,1",
+
+        "grid_scales":          [1,1,1],
+        "obj_scale":            5,
+        "noobj_scale":          1,
+        "xywh_scale":           1,
+        "class_scale":          1,
+
+        "tensorboard_dir":      "logs",
+        "saved_weights_name":   "gun.h5",
+        "debug":                true
+    },
+
+    "valid": {
+        "valid_image_folder":   "/content/gun_data_cross_validation/xxxxx/test_img/",
+        "valid_annot_folder":   "/content/gun_data_cross_validation/xxxxx/test_annot/",
+        "cache_name":           "",
+
+        "valid_times":          1
+    }
+}
