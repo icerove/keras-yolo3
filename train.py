@@ -257,7 +257,7 @@ def _main_(args):
         max_queue_size   = 8
     )
     print("1234567890---------------------")
-    print(history.history['acc'])
+    #print(history.history['acc'])
     print(history.history)
 
     # make a GPU version of infer_model for evaluation
