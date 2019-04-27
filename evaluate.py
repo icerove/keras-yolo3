@@ -49,7 +49,7 @@ def _main_(args):
     os.environ['CUDA_VISIBLE_DEVICES'] = config['train']['gpus']
 
     infer_model = load_model(config['train']['saved_weights_name'])
-
+    print(infer_model.history['acc'])
     # compute mAP for all the classes
     average_precisions = evaluate(infer_model, valid_generator)
 
