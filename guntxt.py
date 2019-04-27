@@ -23,7 +23,7 @@ def parse_txt_annotation(ann_dir, img_dir):
                 # Has gun(s), record image attribute and bounding boxes
                 img['object'] = []
                 for _ in range(n):
-                    xmin, ymin, xmax, ymax = np.fromfile(f, dtype=int, count=4, sep=" ")
+                    xmin, ymin, xmax, ymax = map(f.readline().split(' '), int)
                     obj = {
                         "xmin": xmin,
                         "ymin": ymin,
