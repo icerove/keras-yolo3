@@ -4,7 +4,7 @@ import argparse
 import os
 import numpy as np
 import json
-from voc import parse_voc_annotation
+from guntxt import parse_txt_annotation
 from yolo import create_yolov3_model
 from generator import BatchGenerator
 from utils.utils import normalize, evaluate
@@ -21,11 +21,9 @@ def _main_(args):
     ###############################
     #   Create the validation generator
     ###############################  
-    valid_ints, labels = parse_voc_annotation(
+    valid_ints, labels = parse_txt_annotation(
         config['valid']['valid_annot_folder'], 
-        config['valid']['valid_image_folder'], 
-        config['valid']['cache_name'],
-        config['model']['labels']
+        config['valid']['valid_image_folder']
     )
 
     labels = labels.keys() if len(config['model']['labels']) == 0 else config['model']['labels']
