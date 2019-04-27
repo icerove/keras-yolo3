@@ -104,13 +104,13 @@ def _main_(argv):
             relative_w = (float(obj['xmax']) - float(obj['xmin']))/image['width']
             relatice_h = (float(obj["ymax"]) - float(obj['ymin']))/image['height']
             annotation_dims.append(tuple(map(float, (relative_w,relatice_h))))
+    if annotation_dims:
+        annotation_dims = np.array(annotation_dims)
+        centroids = run_kmeans(annotation_dims, num_anchors)
 
-    annotation_dims = np.array(annotation_dims)
-    centroids = run_kmeans(annotation_dims, num_anchors)
-
-    # write anchors to file
-    print('\naverage IOU for', num_anchors, 'anchors:', '%0.2f' % avg_IOU(annotation_dims, centroids))
-    print_anchors(centroids)
+        # write anchors to file
+        print('\naverage IOU for', num_anchors, 'anchors:', '%0.2f' % avg_IOU(annotation_dims, centroids))
+        print_anchors(centroids)
 
 if __name__ == '__main__':
     argparser = argparse.ArgumentParser()
