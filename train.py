@@ -247,7 +247,7 @@ def _main_(args):
     ###############################
     callbacks = create_callbacks(config['train']['saved_weights_name'], config['train']['tensorboard_dir'], infer_model)
 
-    train_model.fit_generator(
+    history = train_model.fit_generator(
         generator        = train_generator, 
         steps_per_epoch  = len(train_generator) * config['train']['train_times'], 
         epochs           = config['train']['nb_epochs'] + config['train']['warmup_epochs'], 
@@ -256,6 +256,8 @@ def _main_(args):
         workers          = 4,
         max_queue_size   = 8
     )
+    print(history.history['acc'])
+    print(history.history)
 
     # make a GPU version of infer_model for evaluation
     if multi_gpu > 1:
