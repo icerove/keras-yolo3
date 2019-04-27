@@ -256,6 +256,7 @@ def _main_(args):
         workers          = 4,
         max_queue_size   = 8
     )
+    print("1234567890---------------------")
     print(history.history['acc'])
     print(history.history)
 
