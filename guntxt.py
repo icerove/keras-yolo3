@@ -33,4 +33,4 @@ def parse_txt_annotation(ann_dir, img_dir):
                     labels['gun'] += 1
                     img['object'].append(obj)
                 
-        return all_insts, labels
+    return all_insts, labels
