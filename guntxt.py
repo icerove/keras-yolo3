@@ -27,7 +27,8 @@ def parse_txt_annotation(ann_dir, img_dir):
                         "xmin": xmin,
                         "ymin": ymin,
                         "xmax": xmax,
-                        "ymax": ymax
+                        "ymax": ymax,
+                        "name": "gun"
                     }
                     labels['gun'] += 1
                     img['object'].append(obj)
