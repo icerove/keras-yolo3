@@ -21,8 +21,6 @@ def parse_txt_annotation(ann_dir, img_dir):
                 all_insts.append(img)
             else:
                 # Has gun(s), record image attribute and bounding boxes
-                img['object'] = []
-                print("-----"+str(n))
                 for _ in range(n):
                     xmin, ymin, xmax, ymax = map(int, f.readline().split(' '))
                     obj = {
@@ -33,7 +31,6 @@ def parse_txt_annotation(ann_dir, img_dir):
                     }
                     labels['gun'] += 1
                     img['object'].append(obj)
-                if n>0:
-                    print(img['object'])
-                
+                all_insts.append(img)
+    
     return all_insts, labels
