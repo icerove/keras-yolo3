@@ -2,7 +2,7 @@ import random
 import argparse
 import numpy as np
 
-from voc import parse_voc_annotation
+from guntxt import parse_txt_annotation
 import json
 
 def IOU(ann, centroids):
@@ -91,11 +91,9 @@ def _main_(argv):
     with open(config_path) as config_buffer:
         config = json.loads(config_buffer.read())
 
-    train_imgs, train_labels = parse_voc_annotation(
+    train_imgs, train_labels = parse_txt_annotation(
         config['train']['train_annot_folder'],
-        config['train']['train_image_folder'],
-        config['train']['cache_name'],
-        config['model']['labels']
+        config['train']['train_image_folder']
     )
 
     # run k_mean to find the anchors
