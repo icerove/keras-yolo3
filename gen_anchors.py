@@ -86,7 +86,7 @@ def run_kmeans(ann_dims, anchor_num):
 
 def _main_(argv):
     config_path = args.conf
-    num_anchors = args.anchors
+    num_anchors = int(args.anchors)
 
     with open(config_path) as config_buffer:
         config = json.loads(config_buffer.read())
@@ -123,7 +123,7 @@ if __name__ == '__main__':
     argparser.add_argument(
         '-a',
         '--anchors',
-        default=9,
+        default='9',
         help='number of anchors to use')
 
     args = argparser.parse_args()
