@@ -7,7 +7,7 @@ import json
 from guntxt import parse_txt_annotation
 from yolo import create_yolov3_model, dummy_loss
 from generator import BatchGenerator
-from utils.utils import normalize, evaluate, makedirs
+from utils.utils import normalize, evaluate, makedirs, simple_evaluate
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau
 from keras.optimizers import Adam
 from callbacks import CustomModelCheckpoint, CustomTensorBoard
@@ -256,24 +256,22 @@ def _main_(args):
         workers          = 4,
         max_queue_size   = 8
     )
-    print("1234567890---------------------")
-    #print(history.history['acc'])
-    print(history.history)
 
     # make a GPU version of infer_model for evaluation
     if multi_gpu > 1:
         infer_model = load_model(config['train']['saved_weights_name'])
 
-    ###############################
-    #   Run the evaluation
-    ###############################   
-    # compute mAP for all the classes
-    average_precisions = evaluate(infer_model, valid_generator)
+    print(simple_evaluate(infer_model, valid_generator))
+    # ###############################
+    # #   Run the evaluation
+    # ###############################   
+    # # compute mAP for all the classes
+    # # average_precisions = evaluate(infer_model, valid_generator)
 
-    # print the score
-    for label, average_precision in average_precisions.items():
-        print(labels[label] + ': {:.4f}'.format(average_precision))
-    print('mAP: {:.4f}'.format(sum(average_precisions.values()) / len(average_precisions)))           
+    # # print the score
+    # for label, average_precision in average_precisions.items():
+    #     print(labels[label] + ': {:.4f}'.format(average_precision))
+    # print('mAP: {:.4f}'.format(sum(average_precisions.values()) / len(average_precisions)))           
 
 if __name__ == '__main__':
     argparser = argparse.ArgumentParser(description='train and evaluate YOLO_v3 model on any dataset')

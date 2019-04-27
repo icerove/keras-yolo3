@@ -14,6 +14,22 @@ def makedirs(path):
         if not os.path.isdir(path):
             raise
 
+def simple_evaluate(model, generator):
+    success = 0
+    for i in range(generator.size()):
+        raw_image = [generator.load_image(i)]
+
+        try:
+            pred_boxes = get_yolo_boxes(model, raw_image, net_h, net_w, generator.get_anchors(), obj_thresh, nms_thresh)[0]
+        except:
+            continue
+        else:
+            has_gun = generator.load_annotation(i).size != 0
+            pred_has_gun = len(pred_boxes) > 0
+            if has_gun == pred_has_gun:
+                success += 1
+    return success/generator.size()
+
 def evaluate(model, 
              generator, 
              iou_threshold=0.5,
