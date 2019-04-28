@@ -35,6 +35,11 @@ def simple_evaluate(model, generator):
         print(pred_has_gun)
         if has_gun == pred_has_gun:
             success += 1
+            print("---------")
+            print(pred_boxes)
+        else:
+            print("=========")
+            print(pred_boxes)
     return success/generator.size()
 
 def evaluate(model, 
