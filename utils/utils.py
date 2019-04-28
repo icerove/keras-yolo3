@@ -85,9 +85,11 @@ def evaluate(model,
         # copy detections to all_annotations
         for label in range(generator.num_classes()):
             if annotations.size > 0:
+                print('aaa')
+                print(annotations[annotations[:, 4] == label, :4].copy())
                 all_annotations[i][label] = annotations[annotations[:, 4] == label, :4].copy()
             else:
-                all_annotations[i][label] = []
+                all_annotations[i][label] = np.array([])
 
     # compute mAP by comparing all detections and all annotations
     average_precisions = {}
