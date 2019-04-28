@@ -16,23 +16,22 @@ def makedirs(path):
 
 def simple_evaluate(model, generator):
     success = 0
-    print("9-9-9-9-9")
-    print(generator.size())
     for i in range(generator.size()):
         raw_image = [generator.load_image(i)]
 
         try:
             pred_boxes = get_yolo_boxes(model, raw_image, net_h, net_w, generator.get_anchors(), obj_thresh, nms_thresh)[0]
         except:
+            print('8-8-8-8-8-8-8-8-8-8-8')
             continue
-        else:
-            has_gun = (generator.load_annotation(i).size != 0)
-            pred_has_gun = (len(pred_boxes) > 0)
-            print('0-0-0-0-0-0-0-0-0-0-0-0-0-0-0')
-            print(has_gun)
-            print(pred_has_gun)
-            if has_gun == pred_has_gun:
-                success += 1
+        
+        has_gun = (generator.load_annotation(i).size != 0)
+        pred_has_gun = (len(pred_boxes) > 0)
+        print('0-0-0-0-0-0-0-0-0-0-0-0-0-0-0')
+        print(has_gun)
+        print(pred_has_gun)
+        if has_gun == pred_has_gun:
+            success += 1
     return success/generator.size()
 
 def evaluate(model, 
