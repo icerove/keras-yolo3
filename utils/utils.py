@@ -83,12 +83,11 @@ def evaluate(model,
         annotations = generator.load_annotation(i)
         
         # copy detections to all_annotations
-        print(annotations)
         for label in range(generator.num_classes()):
-            all_annotations[i][label] = annotations[annotations[:, 4] == label, :4].copy()
-            print(i)
-            print(label)
-            print(all_annotations)
+            if annotations:
+                all_annotations[i][label] = annotations[annotations[:, 4] == label, :4].copy()
+            else:
+                all_annotations[i][label] = []
 
     # compute mAP by comparing all detections and all annotations
     average_precisions = {}
