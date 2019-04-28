@@ -266,7 +266,7 @@ def _main_(args):
     #   Run the evaluation
     ###############################   
     # compute mAP for all the classes
-    # average_precisions = evaluate(infer_model, valid_generator)
+    average_precisions = evaluate(infer_model, valid_generator)
 
     # print the score
     for label, average_precision in average_precisions.items():
