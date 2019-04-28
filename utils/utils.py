@@ -31,8 +31,7 @@ def simple_evaluate(model, generator):
         has_gun = (generator.load_annotation(i).size != 0)
         pred_has_gun = (len(pred_boxes) > 0)
         print(generator.load_filename(i))
-        print(has_gun)
-        print(pred_has_gun)
+        print(has_gun, pred_has_gun)
         if has_gun == pred_has_gun:
             success += 1
             print("---------")
