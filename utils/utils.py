@@ -24,8 +24,8 @@ def simple_evaluate(model, generator):
         net_w=235
         try:
             pred_boxes = get_yolo_boxes(model, raw_image, net_h, net_w, generator.get_anchors(), obj_thresh, nms_thresh)[0]
-        except:
-            print('8-8-8-8-8-8-8-8-8-8-8')
+        except Exception as e:
+            print(e)
             continue
         
         has_gun = (generator.load_annotation(i).size != 0)
