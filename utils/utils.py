@@ -84,7 +84,7 @@ def evaluate(model,
         
         # copy detections to all_annotations
         for label in range(generator.num_classes()):
-            if annotations:
+            if annotations.size > 0:
                 all_annotations[i][label] = annotations[annotations[:, 4] == label, :4].copy()
             else:
                 all_annotations[i][label] = []
