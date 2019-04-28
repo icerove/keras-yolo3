@@ -16,6 +16,8 @@ def makedirs(path):
 
 def simple_evaluate(model, generator):
     success = 0
+    print("9-9-9-9-9")
+    print(generator.size())
     for i in range(generator.size()):
         raw_image = [generator.load_image(i)]
 
