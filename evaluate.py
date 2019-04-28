@@ -7,7 +7,7 @@ import json
 from guntxt import parse_txt_annotation
 from yolo import create_yolov3_model
 from generator import BatchGenerator
-from utils.utils import normalize, evaluate
+from utils.utils import normalize, evaluate, simple_evaluate
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 from keras.optimizers import Adam
 from keras.models import load_model
@@ -50,6 +50,7 @@ def _main_(args):
 
     infer_model = load_model(config['train']['saved_weights_name'])
 
+    print(simple_evaluate(infer_model, valid_generator))
     # compute mAP for all the classes
     average_precisions = evaluate(infer_model, valid_generator)
 

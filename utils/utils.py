@@ -24,8 +24,11 @@ def simple_evaluate(model, generator):
         except:
             continue
         else:
-            has_gun = generator.load_annotation(i).size != 0
-            pred_has_gun = len(pred_boxes) > 0
+            has_gun = (generator.load_annotation(i).size != 0)
+            pred_has_gun = (len(pred_boxes) > 0)
+            print('0-0-0-0-0-0-0-0-0-0-0-0-0-0-0')
+            print(has_gun)
+            print(pred_has_gun)
             if has_gun == pred_has_gun:
                 success += 1
     return success/generator.size()
