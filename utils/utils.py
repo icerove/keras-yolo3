@@ -20,8 +20,8 @@ def simple_evaluate(model, generator):
         raw_image = [generator.load_image(i)]
         obj_thresh=0.5
         nms_thresh=0.45
-        net_h=235
-        net_w=235
+        net_h=416
+        net_w=416
         try:
             pred_boxes = get_yolo_boxes(model, raw_image, net_h, net_w, generator.get_anchors(), obj_thresh, nms_thresh)[0]
         except Exception as e:
