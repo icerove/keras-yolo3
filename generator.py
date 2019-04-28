@@ -225,4 +225,7 @@ class BatchGenerator(Sequence):
         return np.array(annots)
 
     def load_image(self, i):
-        return cv2.imread(self.instances[i]['filename'])     
+        return cv2.imread(self.instances[i]['filename'])    
+
+    def load_filename(self, i):
+        return self.instances[i]['filename']
